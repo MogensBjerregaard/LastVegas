@@ -1,0 +1,16 @@
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\appsettings.Development.json
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\appsettings.json
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\Properties\launchSettings.json
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\LastVegas.deps.json
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\LastVegas.runtimeconfig.json
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\LastVegas.runtimeconfig.dev.json
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\LastVegas.dll
+C:\source\LastVegas\LastVegas\bin\Release\netcoreapp2.2\LastVegas.pdb
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.csprojAssemblyReference.cache
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.RazorAssemblyInfo.cache
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.RazorAssemblyInfo.cs
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.AssemblyInfoInputs.cache
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.AssemblyInfo.cs
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.RazorTargetAssemblyInfo.cache
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.dll
+C:\source\LastVegas\LastVegas\obj\Release\netcoreapp2.2\LastVegas.pdb

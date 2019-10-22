@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Jackpot"
+    android:background="#000">
+
+    <ImageView
+        android:id="@+id/roll1"
+        android:layout_width="0dp"
+        android:layout_height="239dp"
+        app:layout_constraintEnd_toStartOf="@+id/roll2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pokemon1" />
+
+    <ImageView
+        android:id="@+id/roll2"
+        android:layout_width="0dp"
+        android:layout_height="239dp"
+        app:layout_constraintEnd_toStartOf="@+id/roll3"
+        app:layout_constraintStart_toEndOf="@+id/roll1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pokemon1" />
+
+    <ImageView
+        android:id="@+id/roll3"
+        android:layout_width="0dp"
+        android:layout_height="239dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/roll2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pokemon1" />
+
+    <Button
+        android:id="@+id/buttonHold1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:backgroundTint="@color/buttonHoldFalse"
+        android:onClick="pressHoldButton1"
+        android:text="Hold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roll1" />
+
+    <Button
+        android:id="@+id/buttonHold2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonHoldFalse"
+        android:onClick="pressHoldButton2"
+        android:text="Hold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintStart_toEndOf="@+id/buttonHold1"
+        app:layout_constraintTop_toBottomOf="@+id/roll2" />
+
+    <Button
+        android:id="@+id/buttonHold3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:backgroundTint="@color/buttonHoldFalse"
+        android:onClick="pressHoldButton3"
+        android:text="Hold"
+        app:layout_constraintStart_toEndOf="@+id/buttonHold2"
+        app:layout_constraintTop_toBottomOf="@+id/roll3" />
+
+    <ImageView
+        android:id="@+id/arrowleft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_media_ff" />
+
+    <ImageView
+        android:id="@+id/arrowright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/roll3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_media_rew" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="353dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/stalinist_one"
+        android:text="Credit: 0"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonHold2"
+        tools:text="Credit: 0" />
+
+    <Button
+        android:id="@+id/buttonCredit"
+        android:layout_width="97dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="196dp"
+        android:backgroundTint="#FFC107"
+        android:onClick="buyCredit"
+        android:text="Buy credit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonHold1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="396dp"
+        android:layout_height="125dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score"
+        app:srcCompat="@drawable/point_chart_horizontal" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="112dp"
+        android:backgroundTint="#4CAF50"
+        android:clickable="true"
+        android:onClick="roll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="40dp"
+        app:srcCompat="@drawable/roll_white" />
+</androidx.constraintlayout.widget.ConstraintLayout>

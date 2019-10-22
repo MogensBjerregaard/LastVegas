@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LastVegas", "LastVegas\LastVegas.csproj", "{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Debug|Any CPU.Build.0 = Debug|x64
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Debug|x64.ActiveCfg = Debug|x64
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Debug|x64.Build.0 = Debug|x64
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F8576B2-35D8-4BC1-B11F-EEF8A2F59306}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53B2C68D-03D1-412F-AB7A-30F2B568D276}
+	EndGlobalSection
+EndGlobal
