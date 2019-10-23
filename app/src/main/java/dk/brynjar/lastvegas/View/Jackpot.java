@@ -40,13 +40,8 @@ public class Jackpot extends AppCompatActivity {
 
     public void buyCredit(View view) {
         slotMachine.playSound(SlotMachine.SoundType.Winning);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //getCreditFromAzure();
-                creditRepository.getCredit();
-            }
-        }, 1000);
+        creditRepository.getCredit();
+
     }
 
 }
