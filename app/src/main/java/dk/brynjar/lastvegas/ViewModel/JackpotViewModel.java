@@ -1,15 +1,24 @@
 package dk.brynjar.lastvegas.ViewModel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
+public class JackpotViewModel extends ViewModel {
+    private MutableLiveData<Integer> credit;
 
-import dk.brynjar.lastvegas.Repository.CreditRepository;
-import dk.brynjar.lastvegas.Repository.ICreditRepository;
-import dk.brynjar.lastvegas.Repository.JackpotModel.ISlotMachine;
-import dk.brynjar.lastvegas.Repository.JackpotModel.SlotMachine;
-
-public class JackpotViewModel  {
-    private ISlotMachine slotMachine;
-    private ICreditRepository creditRepository;
-
-
+    public JackpotViewModel(){
+        credit = new MutableLiveData<>();
+        credit.setValue(0);
+    }
+    public void requestCredit(){
+        credit.setValue(10);
+    }
+    public LiveData<Integer> observeCredit(){
+        return credit;
+    }
+    public void takeOneCredit(){
+        int currentCredit = credit.getValue();
+        if (currentCredit>0) credit.setValue(--currentCredit);
+    }
 }
