@@ -1,6 +1,6 @@
 package dk.brynjar.lastvegas.Repository;
 
-import dk.brynjar.lastvegas.Repository.JackpotModel.ISlotMachine;
+import dk.brynjar.lastvegas.View.SlotMachine.ISlotMachine;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +26,7 @@ public class CreditRepository implements ICreditRepository {
     }
 
     private void updateSlotMachine(int credit){
-        slotMachine.updateCredit(credit);
+        //slotMachine.updateCredit(credit);
     }
 
     private void getCreditFromAzure(){

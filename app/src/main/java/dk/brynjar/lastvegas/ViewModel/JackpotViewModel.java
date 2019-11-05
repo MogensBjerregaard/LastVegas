@@ -12,7 +12,8 @@ public class JackpotViewModel extends ViewModel {
         credit.setValue(0);
     }
     public void requestCredit(){
-        credit.setValue(10);
+        int currentCredit = credit.getValue();
+        credit.setValue(currentCredit+10);
     }
     public LiveData<Integer> observeCredit(){
         return credit;
@@ -21,4 +22,5 @@ public class JackpotViewModel extends ViewModel {
         int currentCredit = credit.getValue();
         if (currentCredit>0) credit.setValue(--currentCredit);
     }
+
 }

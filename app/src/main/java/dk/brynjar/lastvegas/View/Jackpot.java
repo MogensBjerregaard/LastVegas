@@ -1,17 +1,17 @@
 package dk.brynjar.lastvegas.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 import dk.brynjar.lastvegas.Repository.CreditRepository;
-import dk.brynjar.lastvegas.Repository.JackpotModel.ISlotMachine;
-import dk.brynjar.lastvegas.Repository.JackpotModel.SlotMachine;
+import dk.brynjar.lastvegas.View.SlotMachine.ISlotMachine;
+import dk.brynjar.lastvegas.View.SlotMachine.SlotMachine;
 import dk.brynjar.lastvegas.Repository.ICreditRepository;
 import dk.brynjar.lastvegas.R;
 import dk.brynjar.lastvegas.ViewModel.JackpotViewModel;
@@ -31,12 +31,17 @@ public class Jackpot extends AppCompatActivity {
         viewModel.observeCredit().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer credit) {
-                slotMachine.updateCredit(credit);
+                slotMachine.setCredit(credit);
             }
         });
     }
 
     public void roll(View view){
+        int creditStatus = viewModel.observeCredit().getValue();
+        if (creditStatus == 0) {
+            Toast.makeText(this,"You have no credit!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         viewModel.takeOneCredit();
         slotMachine.roll();
     }
@@ -53,7 +58,6 @@ public class Jackpot extends AppCompatActivity {
 
     public void buyCredit(View view) {
         slotMachine.playSound(SlotMachine.SoundType.Winning);
-        //creditRepository.getCredit();
         viewModel.requestCredit();
     }
 

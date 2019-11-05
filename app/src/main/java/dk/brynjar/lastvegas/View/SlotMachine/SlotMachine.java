@@ -1,4 +1,4 @@
-package dk.brynjar.lastvegas.Repository.JackpotModel;
+package dk.brynjar.lastvegas.View.SlotMachine;
 
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -7,9 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -31,7 +29,6 @@ public class SlotMachine implements ISlotMachine {
     private int[] rollImageIds;
     private AppCompatActivity appCompatActivity;
     private boolean isGameExtended;
-    private int credit;
     private MediaPlayer jackpotSound;
     private MediaPlayer winningSound;
     private MediaPlayer creditSound;
@@ -54,7 +51,6 @@ public class SlotMachine implements ISlotMachine {
         rollSound = MediaPlayer.create(appCompatActivity,R.raw.roll);
         rollImageIds = new int[3];
         isGameExtended = false;
-        credit = 0;
 
         imageArray = loadGifIds();
 
@@ -63,9 +59,9 @@ public class SlotMachine implements ISlotMachine {
         enableHoldButtons();
         roll();
     }
-    public void updateCredit(int credit){
-        this.credit+=credit;
-        score.setText("Credit: "+this.credit);
+
+    public void setCredit(int credit){
+        score.setText("Credit: "+credit);
     }
 
     private void initializeGame(){
@@ -91,7 +87,6 @@ public class SlotMachine implements ISlotMachine {
         }
     }
 
-
     public void pressButton1(){
         isButton1OnHold = true;
         button1.setEnabled(false);
@@ -107,33 +102,29 @@ public class SlotMachine implements ISlotMachine {
         button3.setEnabled(false);
     }
 
-    public void roll(){
-
-        if (credit == 0) {
-            Toast.makeText(appCompatActivity.getApplicationContext(),"You have no credit!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    public int roll(){
         rollButton.setEnabled(false);
-        updateCredit(-1);
         int[] threeRandomImageIds = get3RandomPicks();
         if (!isButton1OnHold) rollImageIds[0]= threeRandomImageIds[0];
         if (!isButton2OnHold) rollImageIds[1]= threeRandomImageIds[1];
         if (!isButton3OnHold) rollImageIds[2]= threeRandomImageIds[2];
-        simulateRolling();
+        return simulateRolling();
     }
 
-    private void simulateRolling() {
+    private int simulateRolling() {
         playSound(SoundType.Roll);
         if (!isButton1OnHold) roll1.setImageDrawable(appCompatActivity.getDrawable(R.drawable.rolling1));
         if (!isButton2OnHold) roll2.setImageDrawable(appCompatActivity.getDrawable(R.drawable.rolling2));
         if (!isButton3OnHold) roll3.setImageDrawable(appCompatActivity.getDrawable(R.drawable.rolling3));
+        final int[] creditWon = {0};
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 updateRollImages();
-                checkResult();
+                creditWon[0] = checkResult();
             }
         }, 3500);
+        return creditWon[0];
     }
 
     private void updateRollImages(){
@@ -142,19 +133,22 @@ public class SlotMachine implements ISlotMachine {
         roll3.setImageDrawable(appCompatActivity.getDrawable(imageArray[rollImageIds[2]].getDrawableId()));
     }
 
-    private void checkResult(){
+    private int checkResult(){
         String name0 = imageArray[rollImageIds[0]].getType();
         String name1 = imageArray[rollImageIds[1]].getType();
         String name2 = imageArray[rollImageIds[2]].getType();
 
         if(isButton1OnHold || isButton2OnHold || isButton3OnHold) isGameExtended = true;
 
+        int creditWon = 0;
         if (name0.equals(name1) && name1.equals(name2)){ // 3 matching images - we have a winner
             playSound(SoundType.Jacpot);
-            updateCredit(getJackpot(name0));
+            creditWon = getJackpot(name0);
             resetButtons();
             disableHoldButtons();
             isGameExtended = false;
+            rollButton.setEnabled(true);
+            return creditWon;
         } else {
             Toast.makeText(appCompatActivity.getApplicationContext(),"Try again!", Toast.LENGTH_SHORT).show();
 
@@ -167,8 +161,10 @@ public class SlotMachine implements ISlotMachine {
                 disableHoldButtons();
             }
             isGameExtended = false;
+            rollButton.setEnabled(true);
+            return creditWon;
         }
-        rollButton.setEnabled(true);
+
     }
 
     public void playSound(SoundType soundType) {

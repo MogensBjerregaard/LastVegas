@@ -1,10 +1,10 @@
-package dk.brynjar.lastvegas.Repository.JackpotModel;
+package dk.brynjar.lastvegas.View.SlotMachine;
 
 public interface ISlotMachine {
     void pressButton1();
     void pressButton2();
     void pressButton3();
-    void roll();
+    int roll();
     void playSound(SlotMachine.SoundType soundType);
-    void updateCredit(int credit);
+    void setCredit(int credit);
 }
