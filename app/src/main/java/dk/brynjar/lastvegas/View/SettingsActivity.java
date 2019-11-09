@@ -1,4 +1,5 @@
 package dk.brynjar.lastvegas.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,22 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import dk.brynjar.lastvegas.R;
-import dk.brynjar.lastvegas.Repository.User;
-import dk.brynjar.lastvegas.View.Jackpot;
 
+public class SettingsActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-    private User _user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        setContentView(R.layout.activity_settings);
+        Toolbar toolbar = findViewById(R.id.settings_toolbar);
         setSupportActionBar(toolbar);
-
     }
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
         return true;
     }
 
@@ -39,14 +36,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_leaderboard:
                 startActivity(new Intent(this, LeaderboardActivity.class));
                 return true;
-            case R.id.action_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }
-

@@ -1,12 +1,16 @@
 package dk.brynjar.lastvegas.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,6 +32,8 @@ public class Jackpot extends AppCompatActivity {
         setContentView(R.layout.activity_jackpot);
         slotMachine = new SlotMachine(this);
         creditRepository = new CreditRepository(slotMachine);
+        Toolbar toolbar = findViewById(R.id.jackpot_toolbar);
+        setSupportActionBar(toolbar);
         viewModel = ViewModelProviders.of(this).get(JackpotViewModel.class);
         viewModel.observeCredit().observe(this, new Observer<Integer>() {
             @Override
@@ -61,6 +67,28 @@ public class Jackpot extends AppCompatActivity {
         Log.d("VIEW: Jackpot", "buyCredit method was called.");
         slotMachine.playSound(SlotMachine.SoundType.Winning);
         viewModel.requestCredit();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.jackpot_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+            case R.id.action_buycredit:
+                startActivity(new Intent(this, BuycreditActivity.class));
+                return true;
+           case R.id.action_leaderboard:
+               startActivity(new Intent(this, LeaderboardActivity.class));
+               return true;
+           case R.id.action_settings:
+               startActivity(new Intent(this, SettingsActivity.class));
+               return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

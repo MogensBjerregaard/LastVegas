@@ -1,4 +1,5 @@
 package dk.brynjar.lastvegas.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,22 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import dk.brynjar.lastvegas.R;
-import dk.brynjar.lastvegas.Repository.User;
-import dk.brynjar.lastvegas.View.Jackpot;
 
+public class BuycreditActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-    private User _user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        setContentView(R.layout.activity_buycredit);
+        Toolbar toolbar = findViewById(R.id.credit_toolbar);
         setSupportActionBar(toolbar);
-
     }
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.credit_menu, menu);
         return true;
     }
 
@@ -32,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.action_jackpot:
                 startActivity(new Intent(this, Jackpot.class));
-                return true;
-            case R.id.action_buycredit:
-                startActivity(new Intent(this, BuycreditActivity.class));
                 return true;
             case R.id.action_leaderboard:
                 startActivity(new Intent(this, LeaderboardActivity.class));
@@ -46,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }
+
 
