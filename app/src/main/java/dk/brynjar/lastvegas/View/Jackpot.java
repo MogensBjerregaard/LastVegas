@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ public class Jackpot extends AppCompatActivity {
     }
 
     public void buyCredit(View view) {
+        Log.d("VIEW: Jackpot", "buyCredit method was called.");
         slotMachine.playSound(SlotMachine.SoundType.Winning);
         viewModel.requestCredit();
     }
