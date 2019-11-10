@@ -1,4 +1,4 @@
-package dk.brynjar.lastvegas.View.SlotMachine;
+package dk.brynjar.lastvegas.View.JackpotActivity;
 
 // a roll image contains the drawable id of the gif used and its type
 public class RollImage {

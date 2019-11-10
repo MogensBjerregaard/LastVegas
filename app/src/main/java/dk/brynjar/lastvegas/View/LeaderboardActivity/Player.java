@@ -1,4 +1,4 @@
-package dk.brynjar.lastvegas.View;
+package dk.brynjar.lastvegas.View.LeaderboardActivity;
 
 public class Player {
     private String number;

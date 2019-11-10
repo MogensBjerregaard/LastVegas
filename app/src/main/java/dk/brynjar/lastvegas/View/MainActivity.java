@@ -9,7 +9,8 @@ import android.view.MenuItem;
 
 import dk.brynjar.lastvegas.R;
 import dk.brynjar.lastvegas.Repository.User;
-import dk.brynjar.lastvegas.View.Jackpot;
+import dk.brynjar.lastvegas.View.LeaderboardActivity.LeaderboardActivity;
+import dk.brynjar.lastvegas.View.JackpotActivity.Jackpot;
 
 
 public class MainActivity extends AppCompatActivity {

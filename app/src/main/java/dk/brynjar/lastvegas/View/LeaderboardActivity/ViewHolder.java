@@ -1,4 +1,4 @@
-package dk.brynjar.lastvegas.View;
+package dk.brynjar.lastvegas.View.LeaderboardActivity;
 
 import android.view.View;
 import android.widget.ImageView;

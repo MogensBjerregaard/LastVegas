@@ -1,6 +1,6 @@
 package dk.brynjar.lastvegas.Repository;
 
-import dk.brynjar.lastvegas.View.SlotMachine.ISlotMachine;
+import dk.brynjar.lastvegas.View.JackpotActivity.ISlotMachine;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

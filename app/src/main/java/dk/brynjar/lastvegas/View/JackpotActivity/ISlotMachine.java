@@ -1,4 +1,4 @@
-package dk.brynjar.lastvegas.View.SlotMachine;
+package dk.brynjar.lastvegas.View.JackpotActivity;
 
 public interface ISlotMachine {
     void pressButton1();

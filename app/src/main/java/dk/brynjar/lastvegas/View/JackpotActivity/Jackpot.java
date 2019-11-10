@@ -1,8 +1,7 @@
-package dk.brynjar.lastvegas.View;
+package dk.brynjar.lastvegas.View.JackpotActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -15,8 +14,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import dk.brynjar.lastvegas.Repository.CreditRepository;
-import dk.brynjar.lastvegas.View.SlotMachine.ISlotMachine;
-import dk.brynjar.lastvegas.View.SlotMachine.SlotMachine;
+import dk.brynjar.lastvegas.View.BuycreditActivity;
+import dk.brynjar.lastvegas.View.LeaderboardActivity.LeaderboardActivity;
+import dk.brynjar.lastvegas.View.SettingsActivity;
 import dk.brynjar.lastvegas.Repository.ICreditRepository;
 import dk.brynjar.lastvegas.R;
 import dk.brynjar.lastvegas.ViewModel.JackpotViewModel;
@@ -24,14 +24,13 @@ import dk.brynjar.lastvegas.ViewModel.JackpotViewModel;
 public class Jackpot extends AppCompatActivity {
 
     private ISlotMachine slotMachine;
-    private ICreditRepository creditRepository;
     private JackpotViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jackpot);
         slotMachine = new SlotMachine(this);
-        creditRepository = new CreditRepository(slotMachine);
         Toolbar toolbar = findViewById(R.id.jackpot_toolbar);
         setSupportActionBar(toolbar);
         viewModel = ViewModelProviders.of(this).get(JackpotViewModel.class);

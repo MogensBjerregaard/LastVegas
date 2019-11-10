@@ -1,6 +1,5 @@
-package dk.brynjar.lastvegas.View;
+package dk.brynjar.lastvegas.View.LeaderboardActivity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,15 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
 import dk.brynjar.lastvegas.R;
+import dk.brynjar.lastvegas.View.BuycreditActivity;
+import dk.brynjar.lastvegas.View.JackpotActivity.Jackpot;
+import dk.brynjar.lastvegas.View.SettingsActivity;
 
 public class LeaderboardActivity extends AppCompatActivity {
 

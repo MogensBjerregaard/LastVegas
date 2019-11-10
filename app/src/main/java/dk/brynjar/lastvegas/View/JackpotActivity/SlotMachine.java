@@ -1,4 +1,4 @@
-package dk.brynjar.lastvegas.View.SlotMachine;
+package dk.brynjar.lastvegas.View.JackpotActivity;
 
 import android.media.MediaPlayer;
 import android.os.Handler;
