@@ -13,18 +13,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import dk.brynjar.lastvegas.Repository.CreditRepository;
 import dk.brynjar.lastvegas.View.BuycreditActivity;
 import dk.brynjar.lastvegas.View.LeaderboardActivity.LeaderboardActivity;
 import dk.brynjar.lastvegas.View.SettingsActivity;
-import dk.brynjar.lastvegas.Repository.ICreditRepository;
 import dk.brynjar.lastvegas.R;
-import dk.brynjar.lastvegas.ViewModel.JackpotViewModel;
+import dk.brynjar.lastvegas.ViewModel.CreditViewModel;
 
 public class Jackpot extends AppCompatActivity {
 
     private ISlotMachine slotMachine;
-    private JackpotViewModel viewModel;
+    private CreditViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class Jackpot extends AppCompatActivity {
         slotMachine = new SlotMachine(this);
         Toolbar toolbar = findViewById(R.id.jackpot_toolbar);
         setSupportActionBar(toolbar);
-        viewModel = ViewModelProviders.of(this).get(JackpotViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(CreditViewModel.class);
         viewModel.observeCredit().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer credit) {
@@ -49,7 +47,10 @@ public class Jackpot extends AppCompatActivity {
             return;
         }
         viewModel.takeOneCredit();
-        slotMachine.roll();
+        int winCredit = slotMachine.roll();
+        if (winCredit>0){
+            viewModel.depositCredit(winCredit);
+        }
     }
 
     public void pressHoldButton1(View view) {
@@ -60,12 +61,6 @@ public class Jackpot extends AppCompatActivity {
     }
     public void pressHoldButton3(View view) {
         slotMachine.pressButton3();
-    }
-
-    public void buyCredit(View view) {
-        Log.d("VIEW: Jackpot", "buyCredit method was called.");
-        slotMachine.playSound(SlotMachine.SoundType.Winning);
-        viewModel.requestCredit();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

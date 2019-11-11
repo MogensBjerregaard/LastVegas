@@ -61,7 +61,7 @@ public class SlotMachine implements ISlotMachine {
     }
 
     public void setCredit(int credit){
-        score.setText("Credit: "+credit);
+        score.setText("Score: "+credit);
     }
 
     private void initializeGame(){

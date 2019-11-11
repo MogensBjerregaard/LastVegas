@@ -1,32 +1,57 @@
 package dk.brynjar.lastvegas.Repository;
 
-import dk.brynjar.lastvegas.View.JackpotActivity.ISlotMachine;
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import dk.brynjar.lastvegas.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CreditRepository implements ICreditRepository {
+import static android.content.Context.MODE_PRIVATE;
 
-    private ISlotMachine slotMachine;
+public class CreditRepository {
+
     private Retrofit retrofit;
     private IAzureWebApi azureWebApi;
+    private MutableLiveData<Integer> credit;
+    private Context context;
+    private SharedPreferences prefs;
 
-    public CreditRepository(ISlotMachine slotMachine){
-        this.slotMachine = slotMachine;
+    public CreditRepository(Application app){
+        this.context = app.getApplicationContext();
+        prefs = context.getSharedPreferences("LastVegas", MODE_PRIVATE);
+        credit = new MutableLiveData<>();
+        int initialValue = readCreditFromPrefs();
+        credit.setValue(initialValue);
         retrofit = new Retrofit.Builder().baseUrl("https://lastvegas.azurewebsites.net")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         azureWebApi = retrofit.create(IAzureWebApi.class);
     }
-
-    public void getCredit(){
+    public LiveData<Integer> observeCredit(){
+        return credit;
+    }
+    public void buyCredit(CreditCard card, int amount){
+        // not fully implemented - using card and amount
         getCreditFromAzure();
     }
+    public void withdrawOneCredit(){
+        depositCredit(-1);
+    }
 
-    private void updateSlotMachine(int credit){
-        //slotMachine.updateCredit(credit);
+    public void depositCredit(int credit){
+        int currentCredit = readCreditFromPrefs();
+        writeCreditToPrefs(credit+currentCredit);
+        this.credit.setValue(readCreditFromPrefs());
     }
 
     private void getCreditFromAzure(){
@@ -39,15 +64,26 @@ public class CreditRepository implements ICreditRepository {
                 }
                 if (response.body() != null){
                     int credit = response.body();
-                    updateSlotMachine(credit);
+                    depositCredit(credit);
+                    MediaPlayer.create(context, R.raw.winning).start();
                 }
             }
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-                // log the error
+                Log.e("CreditRepository", "Failed requesting credit from Azure (getCreditFromAzure method)");
             }
         });
+    }
+
+    private void writeCreditToPrefs(int amount) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("credit", String.valueOf(amount));
+        editor.apply();
+    }
+    private int readCreditFromPrefs() {
+        String creditString = prefs.getString("credit", "0");
+        return Integer.parseInt(creditString);
     }
 
 }
