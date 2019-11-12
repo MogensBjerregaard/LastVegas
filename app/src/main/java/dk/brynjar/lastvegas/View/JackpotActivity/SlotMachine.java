@@ -121,9 +121,10 @@ public class SlotMachine implements ISlotMachine {
             @Override
             public void run() {
                 updateRollImages();
-                creditWon[0] = checkResult();
             }
         }, 3500);
+        creditWon[0] = checkResult();
+        rollButton.setEnabled(true);
         return creditWon[0];
     }
 
@@ -147,7 +148,6 @@ public class SlotMachine implements ISlotMachine {
             resetButtons();
             disableHoldButtons();
             isGameExtended = false;
-            rollButton.setEnabled(true);
             return creditWon;
         } else {
             Toast.makeText(appCompatActivity.getApplicationContext(),"Try again!", Toast.LENGTH_SHORT).show();
@@ -161,7 +161,6 @@ public class SlotMachine implements ISlotMachine {
                 disableHoldButtons();
             }
             isGameExtended = false;
-            rollButton.setEnabled(true);
             return creditWon;
         }
 

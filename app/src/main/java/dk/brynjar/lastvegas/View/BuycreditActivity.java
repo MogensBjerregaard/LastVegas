@@ -1,5 +1,6 @@
 package dk.brynjar.lastvegas.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -16,6 +17,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import dk.brynjar.lastvegas.R;
 import dk.brynjar.lastvegas.Repository.CreditCard;
@@ -52,7 +58,7 @@ public class BuycreditActivity extends AppCompatActivity implements AdapterView.
             }
         });
 
-        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item,paths);
 
@@ -78,6 +84,15 @@ public class BuycreditActivity extends AppCompatActivity implements AdapterView.
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_logout:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+                        });
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -114,6 +129,8 @@ public class BuycreditActivity extends AppCompatActivity implements AdapterView.
     public void buyCredit(View view){
         CreditCard creditCard = generateCreditCard();
         creditViewModel.buyCredit(creditCard, purchaseAmount);
+        Toast.makeText(getApplicationContext(), "You purchased "+purchaseAmount+" credits", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     @Override

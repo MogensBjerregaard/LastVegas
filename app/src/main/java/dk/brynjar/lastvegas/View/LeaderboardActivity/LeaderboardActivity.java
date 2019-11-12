@@ -1,5 +1,6 @@
 package dk.brynjar.lastvegas.View.LeaderboardActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,11 +11,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+
 import java.util.ArrayList;
 
 import dk.brynjar.lastvegas.R;
 import dk.brynjar.lastvegas.View.BuycreditActivity;
 import dk.brynjar.lastvegas.View.JackpotActivity.Jackpot;
+import dk.brynjar.lastvegas.View.MainActivity;
 import dk.brynjar.lastvegas.View.SettingsActivity;
 
 public class LeaderboardActivity extends AppCompatActivity {
@@ -52,6 +58,15 @@ public class LeaderboardActivity extends AppCompatActivity {
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_logout:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            }
+                        });
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

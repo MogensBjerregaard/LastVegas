@@ -9,6 +9,9 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import dk.brynjar.lastvegas.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,12 +80,14 @@ public class CreditRepository {
     }
 
     private void writeCreditToPrefs(int amount) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("credit", String.valueOf(amount));
+        editor.putString(user.getEmail(), String.valueOf(amount));
         editor.apply();
     }
     private int readCreditFromPrefs() {
-        String creditString = prefs.getString("credit", "0");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String creditString = prefs.getString(user.getEmail(), "0");
         return Integer.parseInt(creditString);
     }
 

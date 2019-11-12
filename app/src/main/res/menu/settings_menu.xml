@@ -15,5 +15,9 @@
         android:id="@+id/action_leaderboard"
         android:title="Leaderboard"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:title="Log out"
+        app:showAsAction="never" />
 
 </menu>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "128193303444",
+    "firebase_url": "https://last-vegas.firebaseio.com",
+    "project_id": "last-vegas",
+    "storage_bucket": "last-vegas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128193303444:android:2c0a6302deced2ca567581",
+        "android_client_info": {
+          "package_name": "dk.brynjar.lastvegas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128193303444-i6lug4p9k6m09mqkgb3v83dgfnr65eet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkK4aDvEvQHwvMAHhzBrhIt1i3rPZbqbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128193303444-i6lug4p9k6m09mqkgb3v83dgfnr65eet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
