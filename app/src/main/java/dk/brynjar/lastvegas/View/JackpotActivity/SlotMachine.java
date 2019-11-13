@@ -117,7 +117,7 @@ public class SlotMachine implements ISlotMachine {
         if (!isButton2OnHold) roll2.setImageDrawable(appCompatActivity.getDrawable(R.drawable.rolling2));
         if (!isButton3OnHold) roll3.setImageDrawable(appCompatActivity.getDrawable(R.drawable.rolling3));
         final int[] creditWon = {0};
-        new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {      
             @Override
             public void run() {
                 updateRollImages();
