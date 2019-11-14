@@ -44,8 +44,7 @@ public class CreditRepository {
         return credit;
     }
     public void buyCredit(CreditCard card, int amount){
-        // not fully implemented - using card and amount
-        getCreditFromAzure();
+        getCreditFromAzure(card, amount);
     }
     public void withdrawOneCredit(){
         depositCredit(-1);
@@ -57,7 +56,7 @@ public class CreditRepository {
         this.credit.setValue(readCreditFromPrefs());
     }
 
-    private void getCreditFromAzure(){
+    private void getCreditFromAzure(CreditCard card,int amount){
         azureWebApi.getCredit().enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
