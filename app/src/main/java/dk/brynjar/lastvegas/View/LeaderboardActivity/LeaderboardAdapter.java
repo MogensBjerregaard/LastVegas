@@ -6,13 +6,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.List;
+
 import dk.brynjar.lastvegas.R;
+import dk.brynjar.lastvegas.Repository.Player;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    private ArrayList<Player> players;
+    private List<Player> players;
 
-    public LeaderboardAdapter(ArrayList<Player> players){
+    public LeaderboardAdapter(List<Player> players){
         this.players = players;
     }
 

@@ -3,11 +3,14 @@ package dk.brynjar.lastvegas.View.LeaderboardActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,17 +19,22 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dk.brynjar.lastvegas.R;
+import dk.brynjar.lastvegas.Repository.Player;
 import dk.brynjar.lastvegas.View.BuycreditActivity;
 import dk.brynjar.lastvegas.View.JackpotActivity.Jackpot;
 import dk.brynjar.lastvegas.View.MainActivity;
 import dk.brynjar.lastvegas.View.SettingsActivity;
+import dk.brynjar.lastvegas.ViewModel.CreditViewModel;
+import dk.brynjar.lastvegas.ViewModel.PlayerViewModel;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
     private RecyclerView _leaderboard;
     private RecyclerView.Adapter _leaderboardAdapter;
+    private PlayerViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +46,26 @@ public class LeaderboardActivity extends AppCompatActivity {
         _leaderboard.hasFixedSize();
         _leaderboard.setLayoutManager(new LinearLayoutManager(this));
 
-        _leaderboardAdapter = new LeaderboardAdapter(getPlayers());
-        _leaderboard.setAdapter(_leaderboardAdapter);
+        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+        try{
+            viewModel.deleteAllPlayers();
+            for (Player player: getPlayers()) {
+                viewModel.insertPlayer(player);
+            }
+        } catch (Exception e){
+            Log.e("LeaderboardActivity","Failed inserting players\n"+e.getMessage());
+        }
+        viewModel.getAllPlayers().observe(this, new Observer<List<Player>>() {
+            @Override
+            public void onChanged(List<Player> players) {
+                if (!players.isEmpty()) {
+                    _leaderboardAdapter = new LeaderboardAdapter(players);
+                    _leaderboard.setAdapter(_leaderboardAdapter);
+                } else {
+                    Log.e("LeaderboardActivity","Failed retrieving players");
+                }
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,8 +99,8 @@ public class LeaderboardActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<Player> getPlayers() {
-        ArrayList<Player> players = new ArrayList<>();
+    private List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
         players.add(new Player("1", "Dunken", "999", R.drawable.pokemon_icon1));
         players.add(new Player("2", "Ole", "865", R.drawable.pokemon_icon2));
         players.add(new Player("3", "Miss Piggy", "755", R.drawable.pokemon_icon3));
