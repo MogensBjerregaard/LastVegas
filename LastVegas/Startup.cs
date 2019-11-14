@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LastVegas.DataSources;
-using LastVegas.Repositories;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace LastVegas
 {
@@ -29,10 +20,6 @@ namespace LastVegas
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            // Injecting repository for user
-            IUserDataSource userDataSource = new UserDataSource();
-            IUserRepository userRepository = new UserRepository(userDataSource);
-            services.AddSingleton(userRepository);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

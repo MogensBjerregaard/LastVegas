@@ -1,10 +1,21 @@
 package dk.brynjar.lastvegas.Repository;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class CreditCard {
 
+    @SerializedName("number")
+    @Expose
     private int number;
+    @SerializedName("expirationMonth")
+    @Expose
     private int expirationMonth;
+    @SerializedName("expirationYear")
+    @Expose
     private int expirationYear;
+    @SerializedName("cvc")
+    @Expose
     private int cvc;
     public CreditCard(int number, int expirationMonth, int expirationYear, int cvc){
         this.number=number;

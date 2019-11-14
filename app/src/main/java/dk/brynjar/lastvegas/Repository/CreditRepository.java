@@ -56,8 +56,8 @@ public class CreditRepository {
         this.credit.setValue(readCreditFromPrefs());
     }
 
-    private void getCreditFromAzure(CreditCard card,int amount){
-        azureWebApi.getCredit().enqueue(new Callback<Integer>() {
+    private void getCreditFromAzure(CreditCard card,Integer amount){
+        azureWebApi.getCredit(amount).enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if (!response.isSuccessful()){

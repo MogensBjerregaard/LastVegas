@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LastVegas.Models;
-using LastVegas.Repositories;
-using LastVegas.Utility;
+﻿using LastVegas.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LastVegas.Controllers
@@ -18,17 +12,18 @@ namespace LastVegas.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult<int> Get(int amount)
+
+        [HttpGet("{amount}")]
+        public ActionResult<int> GetAmount(int amount)
         {
             return Ok(amount);
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult<int> Post([FromBody] int amount)
+        public ActionResult<int> Post([FromBody] CreditCard creditCard, int amount)
         {
-            if (true) //IsValid(creditCard)
+            if (IsValid(creditCard))
             {
                 return Ok(amount);
             }
@@ -39,6 +34,11 @@ namespace LastVegas.Controllers
 
         }
 
+        private bool IsValid(CreditCard card)
+        {
+            // validate the credit card
+            return true;
+        }
 
     }
 
