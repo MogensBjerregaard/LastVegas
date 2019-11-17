@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
     private TextView welcomeText;
+    private FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         welcomeText = findViewById(R.id.welcomeText);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        welcomeText.setText("");
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
             String name = user.getDisplayName().replace("s","$").replace("S","$");
             welcomeText.setText("Welcome to\nLa$t Vega$\n\n" + name);
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
     public void signOut(View v) {
+        welcomeText.setText("");
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

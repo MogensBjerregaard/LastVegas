@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="buttonHoldFalse">#00BCD4</color>
     <color name="buttonHoldTrue">#02E1FD</color>
+    <color name="LightText">#FFFFFF</color>
+    <color name="DarkBackground">#000000</color>
 </resources>
