@@ -41,6 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
         editTextUserName.setText(user.getDisplayName());
     }
 
+    // updates the name of the Firebase user
     public void saveSettings(View v) {
         if (editTextUserName.getText().toString().equals(user.getDisplayName())){
             Toast.makeText(getApplicationContext(), "You need to edit the name first!", Toast.LENGTH_SHORT).show();

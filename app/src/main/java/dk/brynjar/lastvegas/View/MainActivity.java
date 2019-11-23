@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         welcomeText = findViewById(R.id.welcomeText);
         welcomeText.setText("");
+
+        // using Firebase to authenticate
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
             String name = user.getDisplayName().replace("s","$").replace("S","$");

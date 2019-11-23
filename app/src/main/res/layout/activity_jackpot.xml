@@ -60,7 +60,7 @@
         android:layout_marginStart="28dp"
         android:backgroundTint="@color/buttonHoldFalse"
         android:onClick="pressHoldButton1"
-        android:text="Hold"
+        android:text="@string/hold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roll1" />
 
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/buttonHoldFalse"
         android:onClick="pressHoldButton2"
-        android:text="Hold"
+        android:text="@string/hold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toEndOf="@+id/buttonHold1"
@@ -83,7 +83,7 @@
         android:layout_marginStart="48dp"
         android:backgroundTint="@color/buttonHoldFalse"
         android:onClick="pressHoldButton3"
-        android:text="Hold"
+        android:text="@string/hold"
         app:layout_constraintStart_toEndOf="@+id/buttonHold2"
         app:layout_constraintTop_toBottomOf="@+id/roll3" />
 

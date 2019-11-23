@@ -40,16 +40,21 @@ public class CreditRepository {
                 .build();
         azureWebApi = retrofit.create(IAzureWebApi.class);
     }
+
     public LiveData<Integer> observeCredit(){
         return credit;
     }
+
+    // purchasing new credit is using a azure web app which just returns the requested value
     public void buyCredit(CreditCard card, int amount){
         getCreditFromAzure(card, amount);
     }
+
     public void withdrawOneCredit(){
         depositCredit(-1);
     }
 
+    // credit values are stored in shared preferences using the users email as key
     public void depositCredit(int credit){
         int currentCredit = readCreditFromPrefs();
         writeCreditToPrefs(credit+currentCredit);

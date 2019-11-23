@@ -47,6 +47,8 @@ public class LeaderboardActivity extends AppCompatActivity {
         _leaderboard.setLayoutManager(new LinearLayoutManager(this));
 
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+
+        // first, deleting all players in SQlite db - next, insert mock data for players - finally, read all
         try{
             viewModel.deleteAllPlayers();
             for (Player player: getPlayers()) {

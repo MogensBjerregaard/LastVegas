@@ -25,13 +25,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="@string/settings"
         android:textColor="@color/LightText"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings_toolbar"
-        tools:text="Settings" />
+        tools:text="@string/Settings" />
 
     <EditText
         android:id="@+id/textViewUserName"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:onClick="saveSettings"
-        android:text="Update name"
+        android:text="@string/update_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"

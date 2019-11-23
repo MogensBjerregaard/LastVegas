@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Last Vegas</string>
+    <string name="Settings">Indstillinger</string>
+    <string name="buy_credit">Køb</string>
+    <string name="credit_card_number">Konto kort nummer</string>
+    <string name="cvc">Kontrol cifre</string>
+    <string name="exp_month">Udløb måned</string>
+    <string name="hold">Hold</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="player">Spiller</string>
+    <string name="score">Point</string>
+    <string name="settings">Indstillinger</string>
+    <string name="update_name">Opdater navn</string>
+</resources>
